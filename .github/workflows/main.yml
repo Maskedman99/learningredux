@@ -23,9 +23,13 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
       
-    - name: Release
+    - name: Publish to Github pages
+      env:
+        GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+        GITHUB_EMAIL: ${{ secrets.DEPLOY_GITHUB_EMAIL }}
+        GITHUB_USER: ${{ secrets.DEPLOY_GITHUB_USER }}
       run: |
-        git config --global user.name ${{ secrets.GH_DEPLOY_NAME }}
-        git config --global user.email ${{ secrets.GH_DEPLOY_EMAIL }}
-        echo "machine github.com login ${{ secrets.GH_DEPLOY_NAME }} password ${{ secrets.GH_DEPLOY_TOKEN }}" > ~/.netrc
-        GIT_USER=${{ secrets.GH_DEPLOY_NAME }} yarn run deploy
+        git config --global user.email "$GITHUB_EMAIL"
+        git config --global user.name "$GITHUB_USER"
+        echo "machine github.com login $GITHUB_USER password $GITHUB_TOKEN" > ~/.netrc
+        yarn deploy
