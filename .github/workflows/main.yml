@@ -26,10 +26,6 @@ jobs:
     - name: Publish to Github pages
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_EMAIL: ${{ secrets.DEPLOY_GITHUB_EMAIL }}
-        GITHUB_USER: ${{ secrets.DEPLOY_GITHUB_USER }}
       run: |
-        git config --global user.email "$GITHUB_EMAIL"
-        git config --global user.name "$GITHUB_USER"
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/Maskedman99/learningredux.git
         yarn deploy -u "github-actions-bot <support+actions@github.com>"
