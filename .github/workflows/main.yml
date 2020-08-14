@@ -25,7 +25,7 @@ jobs:
       
     - name: Publish to Github pages
       env:
-        GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_EMAIL: ${{ secrets.DEPLOY_GITHUB_EMAIL }}
         GITHUB_USER: ${{ secrets.DEPLOY_GITHUB_USER }}
       run: |
