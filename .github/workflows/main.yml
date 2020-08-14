@@ -32,4 +32,4 @@ jobs:
         git config --global user.email "$GITHUB_EMAIL"
         git config --global user.name "$GITHUB_USER"
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/Maskedman99/learningredux.git
-        npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
+        yarn deploy -u "github-actions-bot <support+actions@github.com>"
